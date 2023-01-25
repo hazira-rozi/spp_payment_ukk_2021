@@ -3,10 +3,15 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Auth;
 
 class StaffController extends Controller
 {
-    $user = Auth::user();
-    return view('staff.home', compact('user'));
+    public function index()
+    {
+        $user = Auth::user();
+        return view('admin.home', compact('user'));
+    }
+
 
 }

@@ -22,5 +22,6 @@ class StudentMiddleware
             */
             return redirect()->to('logout');
         }
+        return $next($request);
     }
 }

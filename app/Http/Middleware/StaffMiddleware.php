@@ -22,5 +22,6 @@ class StaffMiddleware
             */
             return redirect()->to('logout');
         }
+        return $next($request);
     }
 }

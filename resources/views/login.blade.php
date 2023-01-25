@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
-    <title>Catatan Kegiatan - Login</title>
+    <title>Pembayaran SPP - Login</title>
     <!-- Custom fonts for this template-->
     <link href="{{asset('vendor/fontawesome-free/css/all.min.css')}}" rel="stylesheet" type="text/css">
     <link
@@ -45,7 +45,8 @@
                                 <div class="text-center">
                                     <h1 class="h5 text-gray-900 mb-2">Masukkan email dan password</h1>
                                 </div>
-                                <form class="user" method="post" action="login">
+                                <form class="user" action="{{ route('login') }}" method="post">
+                                @csrf
                                     <div class="form-group">
                                         <input type="text" name="email" class="form-control form-control-user"
                                             id="exampleInputEmail" aria-describedby="emailHelp"

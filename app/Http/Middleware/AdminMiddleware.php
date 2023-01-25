@@ -24,5 +24,6 @@ class AdminMiddleware
             */
             return redirect()->to('logout');
         }
+        return $next($request);
     }
 }
