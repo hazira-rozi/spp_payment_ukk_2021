@@ -49,21 +49,17 @@
                                 @csrf
                                     <div class="form-group">
                                         <input type="text" name="email" class="form-control form-control-user"
-                                            id="exampleInputEmail" aria-describedby="emailHelp"
                                             placeholder="Masukkan email anda">
                                     </div>
                                     <div class="form-group">
                                         <input type="password" name="password" class="form-control form-control-user"
-                                            id="exampleInputPassword" placeholder="Masukkan password anda anda">
+                                            placeholder="Masukkan password anda anda">
                                     </div>
                                     <button type="submit" class="btn btn-primary btn-user btn-block">
                                         <i class="fa fa-key"></i>
                                         Login
                                     </button>
-                                    <a href="register.php" class="btn btn-facebook btn-user btn-block">
-                                        Belum punya akun..? Silahkan daftarkan diri anda!
-                                        <i class="fa fa-arrow-right"></i>
-                                    </a>
+                        
                                 </form>
                             </div>
                         </div>

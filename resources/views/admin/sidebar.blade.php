@@ -2,7 +2,7 @@
 <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
     <!-- Sidebar - Brand -->
-    <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+    <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{route('home')}}">
         <div class="sidebar-brand-icon rotate-n-15">
             <i class="fas fa-laugh-wink"></i>
         </div>
@@ -50,7 +50,7 @@
         <div id="collapsePetugas" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
                 <h6 class="collapse-header">Data Petugas:</h6>
-                <a class="collapse-item" href="buttons.html">Tambah Data</a>
+                <a class="collapse-item" href="{{route('staff.create')}}">Tambah Data</a>
                 <a class="collapse-item" href="cards.html">Lihat Data</a>
             </div>
         </div>
@@ -78,8 +78,8 @@
         <div id="collapseKelas" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
                 <h6 class="collapse-header">Data Kelas:</h6>
-                <a class="collapse-item" href="buttons.html">Tambah Data</a>
-                <a class="collapse-item" href="cards.html">Lihat Data</a>
+                <a class="collapse-item" href="{{route('kelas.create')}}">Tambah Data</a>
+                <a class="collapse-item" href="{{route('kelas.index')}}">Lihat Data</a>
             </div>
         </div>
     </li>

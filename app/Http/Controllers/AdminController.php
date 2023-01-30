@@ -10,7 +10,9 @@ class AdminController extends Controller
     public function index()
     {
         $user = Auth::user();
-        return view('admin.home', compact('user'));
+        return view('admin.index' ,[
+            "title" => "Beranda", "sitemap" => 'Petugas'],compact('user')
+        );
     }
 
 
