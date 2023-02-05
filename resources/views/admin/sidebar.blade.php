@@ -36,8 +36,8 @@
         <div id="collapseSPP" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
                 <h6 class="collapse-header">Data SPP:</h6>
-                <a class="collapse-item" href="buttons.html">Tambah Data</a>
-                <a class="collapse-item" href="cards.html">Lihat Data</a>
+                <a class="collapse-item" href="{{route('spp.create')}}">Tambah Data</a>
+                <a class="collapse-item" href="{{route('spp.index')}}">Lihat Data</a>
             </div>
         </div>
     </li>
@@ -64,8 +64,8 @@
         <div id="collapseSiswa" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
                 <h6 class="collapse-header">Data Siswa:</h6>
-                <a class="collapse-item" href="buttons.html">Tambah Data</a>
-                <a class="collapse-item" href="cards.html">Lihat Data</a>
+                <a class="collapse-item" href="{{route('siswa.create')}}">Tambah Data</a>
+                <a class="collapse-item" href="{{route('siswa.index')}}">Lihat Data</a>
             </div>
         </div>
     </li>
@@ -81,6 +81,7 @@
                 <a class="collapse-item" href="{{route('kelas.create')}}">Tambah Data</a>
                 <a class="collapse-item" href="{{route('kelas.index')}}">Lihat Data</a>
             </div>
+
         </div>
     </li>
 
@@ -96,6 +97,11 @@
                 <a class="collapse-item" href="cards.html">Lihat Data</a>
             </div>
         </div>
+    </li>
+
+    <li class="nav-item">
+    <h6 class="collapse-header">Data Pembayaran:</h6>
+    <a href="{{route('kelas.index')}}">Logout</a>
     </li>
     <!-- Divider -->
     <hr class="sidebar-divider">

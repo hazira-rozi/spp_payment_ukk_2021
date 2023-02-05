@@ -3,11 +3,11 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\HomeController;
-use App\Http\Controllers\SiswaController;
 use App\Http\Controllers\KelasController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\StaffController;
 use App\Http\Controllers\SPPController;
+use App\Http\Controllers\StudentController;
 use App\Http\Controllers\UserController;
 
 /*
@@ -41,7 +41,7 @@ Route::group(['middleware' => 'auth'], function () {
         // /*Akhir route petugas*/
 
         /*Route Siswa*/
-        Route::resource('siswa', SiswaController::class);
+        Route::resource('siswa', StudentController::class);
         /*Akhir Route Siswa*/
 
         /*Route SPP*/

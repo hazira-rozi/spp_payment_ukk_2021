@@ -21,10 +21,10 @@
 </head>
 
 <body id="page-top">
-@include('layouts.alert')
+    @include('layouts.alert')
     <!-- Page Wrapper -->
     <div id="wrapper">
-        
+
         @yield('content')
     </div>
     <!-- End of Page Wrapper -->

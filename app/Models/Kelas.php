@@ -16,4 +16,9 @@ class Kelas extends Model
 
     ];
 
+    public function siswas()
+    {
+        return $this->hasMany(Student::class);
+    }
+
 }
