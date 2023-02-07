@@ -75,6 +75,7 @@
                                             </div>
                                             <div class="col-sm-10">
                                                 <select class="form-control" name="id_kelas">
+                                                    <option>Pilih Kelas</option>
                                                     @foreach($kelas_siswa as $kelas)
                                                     <option value="{{$kelas->id}}">{{$kelas->nama_kelas}}</option>
                                                     @endforeach
@@ -109,6 +110,7 @@
                                             </div>
                                             <div class="col-sm-10">
                                                 <select class="form-control" name="id_spp">
+                                                    <option>Pilih Tahun SPP</option>
                                                     @foreach($spp_siswa as $spp)
                                                     <option value="{{$spp->id}}">{{$spp->tahun}}</option>
                                                     @endforeach

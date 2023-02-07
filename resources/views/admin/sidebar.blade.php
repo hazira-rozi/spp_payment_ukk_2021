@@ -51,7 +51,7 @@
             <div class="bg-white py-2 collapse-inner rounded">
                 <h6 class="collapse-header">Data Petugas:</h6>
                 <a class="collapse-item" href="{{route('staff.create')}}">Tambah Data</a>
-                <a class="collapse-item" href="cards.html">Lihat Data</a>
+                <a class="collapse-item" href="{{route('staff.index')}}">Lihat Data</a>
             </div>
         </div>
     </li>
@@ -93,15 +93,18 @@
         <div id="collapsePembayaran" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
                 <h6 class="collapse-header">Data Pembayaran:</h6>
-                <a class="collapse-item" href="buttons.html">Tambah Data</a>
-                <a class="collapse-item" href="cards.html">Lihat Data</a>
+                <a class="collapse-item" href="{{route('pembayaran.create')}}">Tambah Data</a>
+                <a class="collapse-item" href="{{route('pembayaran.index')}}">Lihat Data</a>
             </div>
         </div>
     </li>
 
     <li class="nav-item">
-    <h6 class="collapse-header">Data Pembayaran:</h6>
-    <a href="{{route('kelas.index')}}">Logout</a>
+        <a class="nav-link collapsed" href="{{route('logout')}}"  aria-expanded="false" aria-controls="collapseTwo">
+            <i class="fas fa-fw fa fa-sign-out-alt"></i>
+            <span>Logout</span>
+        </a>
+        
     </li>
     <!-- Divider -->
     <hr class="sidebar-divider">

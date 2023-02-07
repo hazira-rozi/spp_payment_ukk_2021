@@ -27,7 +27,13 @@
                 <div class="col-xl-12 col-lg-12">
                     <div class="card shadow mb-4">
                         <!-- Card Header - Dropdown -->
-
+                        <div class="card-header">
+                            <!-- <div class="card-header">
+                                
+                            </div> -->
+                            <!-- <h6 class="inline">Data Kelas</h6> -->
+                            <a class="btn btn-sm btn-primary float-right inline" href="{{ route('kelas.create') }}">Add Data <i class="fa fa-plus"></i></a>
+                        </div>
                         <!-- Card Body -->
                         <div class="card-body">
                             <table class="table table-bordered">
@@ -58,6 +64,11 @@
                                     @endforeach
                                 </tbody>
                             </table>
+                        </div>
+                        <div class="card-footer clearfix">
+                            <div class="d-flex justify-content-center">
+                                Showing {{($data_kelas->currentpage()-1)*$data_kelas->perpage()+1}} to {{ $data_kelas->currentpage()*(($data_kelas->perpage() < $data_kelas->total()) ? $data_kelas->perpage(): $data_kelas->total())}} of {{ $data_kelas->total()}} entries</div>
+                            <div class="d-flex justify-content-center">{!! $data_kelas->links() !!}</div>
                         </div>
                     </div>
                 </div>

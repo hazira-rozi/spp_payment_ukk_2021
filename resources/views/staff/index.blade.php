@@ -32,7 +32,7 @@
                                 
                             </div> -->
                             <!-- <h6 class="inline">Data Kelas</h6> -->
-                            <a class="btn btn-sm btn-primary float-right inline" href="{{ route('siswa.create') }}">Add Data <i class="fa fa-plus"></i></a>
+                            <a class="btn btn-sm btn-primary float-right inline" href="{{ route('staff.create') }}">Add Data <i class="fa fa-plus"></i></a>
                         </div>
                         <!-- Card Body -->
                         <div class="card-body">
@@ -40,35 +40,24 @@
                                 <thead>
                                     <tr>
                                         <th style="width: 10px">#</th>
-                                        <th class="text-center">NISN</th>
-                                        <th class="text-center">Nama</th>
-                                        <th class="text-center">Kelas</th>
-                                        <th class="text-center">Alamat</th>
-                                        <th class="text-center">No Telepon</th>
-                                        <th class="text-center">Tahun SPP</th>
+                                        <th class="text-center">Nama Petugas</th>
+                                        <th class="text-center">Email</th>
                                         <th class="text-center">Aksi</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($data_siswa as $siswa)
+                                    @foreach ($data_staff as $staff)
                                     <tr>
                                         <td>{{ ++$i }}</td>
-                                        <td>{{ $siswa->nisn }}</td>
-                                        <td>{{ $siswa->nama }}</td>  
-                                        <td>{{\App\Models\Kelas::findOrFail($siswa->id_kelas)->nama_kelas;}}</td>
-                                        <td>{{ $siswa->alamat }}</td>
-                                        <td>{{ $siswa->no_telp }}</td>
-                                        <td>{{\App\Models\SPP::findOrFail($siswa->id_spp)->tahun;}}</td>
-                                       
+                                        <td>{{ $staff->nama_petugas }}</td>
+                                        <td>{{ $staff->email }}</td>
                                         <td class="text-center">
-                                            <form action="{{ route('siswa.destroy' ,$siswa->id)}}" method="post">
+                                            <form action="{{ route('staff.destroy' ,$staff->id)}}" method="post">
                                                 @csrf
-                                                <a class="btn btn-sm btn-success" href="{{ route('pembayaran.create',$siswa->id) }}"><i class="fa fa-close"></i></a>
-                                                <a class="btn btn-sm btn-primary" href="{{ route('siswa.show',$siswa->id) }}"><i class="fa fa-eye"></i></a>
-                                                <a class="btn btn-sm btn-success" href="{{ route('siswa.edit',$siswa->id) }}"> <i class="fa fa-edit"></i></a>
+                                                <a class="btn btn-sm btn-primary" href="{{ route('staff.show',$staff->id) }}">View <i class="fa fa-eye"></i></a>
+                                                <a class="btn btn-sm btn-success" href="{{ route('staff.edit',$staff->id) }}">Edit <i class="fa fa-edit"></i></a>
                                                 @method('DELETE')
-                                                <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Yakin ingin menghapus Siswa {{$siswa->nama}}?')"><i class="fa fa-trash"></i></button>
-
+                                                <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Yakin ingin menghapus User {{$staff->nama_petugas}}?')">Delete <i class="fa fa-trash"></i></button>
                                             </form>
                                         </td>
                                     </tr>
@@ -76,11 +65,10 @@
                                 </tbody>
                             </table>
                         </div>
-
                         <div class="card-footer clearfix">
                             <div class="d-flex justify-content-center">
-                                Showing {{($data_siswa->currentpage()-1)*$data_siswa->perpage()+1}} to {{ $data_siswa->currentpage()*(($data_siswa->perpage() < $data_siswa->total()) ? $data_siswa->perpage(): $data_siswa->total())}} of {{ $data_siswa->total()}} entries</div>
-                            <div class="d-flex justify-content-center">{!! $data_siswa->links() !!}</div>
+                                Showing {{($data_staff->currentpage()-1)*$data_staff->perpage()+1}} to {{ $data_staff->currentpage()*(($data_staff->perpage() < $data_staff->total()) ? $data_staff->perpage(): $data_staff->total())}} of {{ $data_staff->total()}} entries</div>
+                            <div class="d-flex justify-content-center">{!! $data_staff->links() !!}</div>
                         </div>
                     </div>
                 </div>

@@ -57,7 +57,7 @@
                                                 <label for="nama">Nama</label>
                                             </div>
                                             <div class="col-sm-10">
-                                                <input type="text" name="nama" id="nama" class="form-control form-control-sm" value="{{$siswa->nama}}">
+                                                <input type="text" name="nama" id="nama" class="form-control form-control-sm" value="{{$siswa->nama}}" readonly>
                                                 {!!$errors->first("nama", "<span class='text-danger'>:message</span>")!!}
                                             </div>
                                         </div>
@@ -66,7 +66,7 @@
                                                 <label for="email">Email</label>
                                             </div>
                                             <div class="col-sm-10">
-                                                <input type="email" name="email" id="email" class="form-control form-control-sm" value="{{$siswa->email}}" hidden>
+                                                <input type="email" name="email" id="email" class="form-control form-control-sm" value="{{$siswa->email}}" readonly>
                                                 {!!$errors->first("email", "<span class='text-danger'>:message</span>")!!}
                                             </div>
                                         </div>

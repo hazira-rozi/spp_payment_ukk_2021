@@ -15,7 +15,7 @@ class Staff extends Model
 
     protected $fillable = [
         'email',
-        'nama',
+        'nama_petugas',
         
     ];
 }

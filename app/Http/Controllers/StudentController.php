@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\DB;
 
 class StudentController extends Controller
 {
@@ -20,11 +21,11 @@ class StudentController extends Controller
     }
 
     public function index()
-    {   
+    {
         $nama_kelas = Kelas::select('nama_kelas')->pluck('nama_kelas');
         $tahun_spp = SPP::select('tahun')->pluck('tahun');
         $data_siswa = Student::latest()->paginate('10');
-        
+
         return view('siswa.index', [
 
             "data_siswa" => $data_siswa,
@@ -56,7 +57,7 @@ class StudentController extends Controller
             'nis'           => 'required|unique:student',
             'nama'          => 'required',
             'id_kelas'      => 'required',
-            'email'         => 'required|email',
+            'email'         => 'required|email|unique:users',
             'alamat'        => 'required',
             'no_telp'       => 'required|digits_between:10,12',
             'id_spp'        => 'required',
@@ -90,20 +91,20 @@ class StudentController extends Controller
             "id_kelas"      => $request->id_kelas,
             "email"         => $request->email,
             "alamat"        => $request->alamat,
-            "no_telp"       => "0".$request->no_telp,
+            "no_telp"       => "0" . $request->no_telp,
             "id_spp"        => $request->id_spp,
         ];
 
         Student::create($data_student);
         $default_pass = str::random(8);
         $data_user = [
-            "email"         => $request->email, 
+            "email"         => $request->email,
             "name"          => $request->nama,
             "default_pass"  => $default_pass,
             "password"      => Hash::make($default_pass),
             "role"          => "student"
         ];
-        
+
         User::create($data_user);
 
         return redirect()->route('siswa.index')->with('success', ' Data telah ditambahkan!');
@@ -126,7 +127,7 @@ class StudentController extends Controller
         $kelas_siswa = Kelas::all();
         $spp_siswa = SPP::all();
         //tambah code 
-        
+
         return view('siswa.edit', [
             "siswa" => $siswa,
             "title" => "Edit Data SPP",
@@ -143,7 +144,7 @@ class StudentController extends Controller
             'nis'           => 'required|unique:student,nis,' . $id,
             'nama'          => 'required',
             'id_kelas'      => 'required',
-            'email'         => 'required|email',
+            'email'         => 'required|email|unique:student,email,' . $id,
             'alamat'        => 'required',
             'no_telp'       => 'required|digits_between:10,12',
             'id_spp'        => 'required',
@@ -177,7 +178,7 @@ class StudentController extends Controller
             "id_kelas"      => $request->id_kelas,
             "email"         => $request->email,
             "alamat"        => $request->alamat,
-            "no_telp"       => "0".$request->no_telp,
+            "no_telp"       => "0" . $request->no_telp,
             "id_spp"        => $request->id_spp,
         ];
 
@@ -189,14 +190,18 @@ class StudentController extends Controller
     public function destroy($id)
     {
         $siswa = Student::find($id);
-
-
-
+        $email = $siswa->email;
+        DB::table('users')->where('email', $email)->delete();
+        // dd($user->email);
         $siswa->delete();
+        // $user->delete();
 
         return redirect()->route('siswa.index', [
-            "title" => "Data SPP",
-            "sitemap" => "SPP"
+            "title" => "Data Siswa",
+            "sitemap" => "Siswa"
         ])->with('success', 'Data berhasil dihapus');
     }
+
+
+   
 }
