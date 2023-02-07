@@ -24,6 +24,11 @@ class UserSeeder extends Seeder
             'created_at' => \Carbon\Carbon::now(),
             'email_verified_at' => \Carbon\Carbon::now()
         ]);
+        DB::table('staff')->insert([
+            'nama_petugas' => 'Admin',
+            'email' => 'admin@gmail.com',
+            'created_at' => \Carbon\Carbon::now()
+        ]);
         DB::table('users')->insert([
             'name' => 'Student',
             'email' => 'student@gmail.com',

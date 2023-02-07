@@ -115,8 +115,8 @@
                                                 <label for="tgl_bayar">Tanggal Dibayar</label>
                                             </div>
                                             <div class="col-sm-4">
-                                                <input type="date" class="form-control form-control-sm" id="tgl_bayar" name="tgl_bayar">
-                                                {!!$errors->first("tgl_bayar", "<span class='text-danger'>:message</span>")!!}
+                                                <input type="date" id="tanggal_bayar" name="tanggal_bayar" class="form-control form-control-sm">
+                                                {!!$errors->first("tanggal_bayar", "<span class='text-danger'>:message</span>")!!}
                                             </div>
                                         </div>
                                         

@@ -18,7 +18,7 @@ class CreatePembayaranTable extends Migration
             $table->bigInteger('id_petugas');
             $table->char('nisn',10);
             $table->date('tanggal_bayar');
-            $table->string('bulan_dibayar',8);
+            $table->string('bulan_dibayar',12);
             $table->year('tahun_dibayar');
             $table->bigInteger('id_spp');
             $table->integer('jumlah_bayar');

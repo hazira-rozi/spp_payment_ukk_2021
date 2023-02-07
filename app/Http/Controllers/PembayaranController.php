@@ -27,14 +27,17 @@ class PembayaranController extends Controller
     {   
         
         $data_pembayaran = Pembayaran::latest()->paginate('10');
-        
+        $data_siswa = Student::all();
+        $data_spp = SPP::all();
+        // $petugas_id = $data_petugas->id;
         return view('pembayaran.index', [
                 
-            "data_siswa" => $data_pembayaran,
+            "data_pembayaran" => $data_pembayaran,
+            "data_siswa"=>$data_siswa,
+            "data_spp"=>$data_spp,
             "title" => "Home",
             "sitemap" => 'Pembayaran',
-            // "nama_kelas" => $nama_kelas,
-            // "tahun_spp"  => $tahun_spp
+         
         ])->with('i', (request()->input('page', 1) - 1) * 10);
     }
 
@@ -64,15 +67,17 @@ class PembayaranController extends Controller
     {
         $rules = [
             'nisn'          => 'required',
-            'tanggal_bayar' => 'date:Y-m-d',
+            'tanggal_bayar' => 'required',
             'bulan_dibayar' => 'required',
             'jumlah_bayar'  => 'required|digits_between:5,11',
 
         ];
 
+        // dd($request->tanggal_bayar);
         $messages = [
             'nisn.required'             => 'NISN tidak boleh kosong',
             'tanggal_bayar.required'    => 'Tanggal pembayaran tidak boleh kosong',
+            'tanggal_bayar.date'        => 'format tidak sesuai',
             'bulan_dibayar.required'    => 'Bulan dibayar tidak boleh kosong',
             'id_spp.required'           => 'Tahun SPP tidak boleh kosong',
         ];
@@ -90,10 +95,10 @@ class PembayaranController extends Controller
             "bulan_dibayar" => $request->bulan_dibayar,
             "tahun_dibayar" => $request->tahun_spp,
             "id_spp"        => $request->id_spp,
-            "jumlah_bayar"  =>$request->jumlah_bayar,
+            "jumlah_bayar"  => $request->jumlah_bayar,
         ];
 
-        Student::create($data_pembayaran);
+        Pembayaran::create($data_pembayaran);
         
 
         return redirect()->route('pembayaran.index')->with('success', ' Data telah ditambahkan!');
