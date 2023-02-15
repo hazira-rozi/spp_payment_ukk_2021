@@ -63,7 +63,7 @@
                                         <td class="text-center">
                                             <form action="{{ route('siswa.destroy' ,$siswa->id)}}" method="post">
                                                 @csrf
-                                                <a class="btn btn-sm btn-success" href="{{ route('pembayaran.create',$siswa->id) }}"><i class="fa fa-close"></i></a>
+                                                
                                                 <a class="btn btn-sm btn-primary" href="{{ route('siswa.show',$siswa->id) }}"><i class="fa fa-eye"></i></a>
                                                 <a class="btn btn-sm btn-success" href="{{ route('siswa.edit',$siswa->id) }}"> <i class="fa fa-edit"></i></a>
                                                 @method('DELETE')

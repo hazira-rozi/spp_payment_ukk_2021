@@ -28,101 +28,97 @@
                     <div class="card border-left-primary shadow h-100 py-2">
                         <div class="card-body">
                             <!-- Nested Row within Card Body -->
-
+i
                             <div class="col-lg-12">
                                 <div class="p-1">
-                                    <form action="{{route('siswa.update',$siswa->id)}}" method="POST" enctype="multipart/form-data">
+                                    <form action="{{route('pembayaran.update',$pembayaran->id)}}" method="POST" enctype="multipart/form-data">
                                         @csrf
                                         @method('PUT')
+                                        <div class="row my-2">
+                                            <div class="col-sm-2">
+                                                <label for="id_kelas">Kelas</label>
+                                            </div>
+                                            <div class="col-sm-10">
+                                                <input type="text" name="id_kelas" id="fieldkelas" class="form-control form-control-sm" value="{{$nama_kelas}}" readonly>
+                                                <input type="text" name="id_petugas" id="id_petugas" class="form-control form-control-sm" value="{{$pembayaran->id_petugas}}" hidden>
+
+                                            </div>
+
+                                        </div>
+                                        <div class="row my-2">
+                                            <div class="col-sm-2">
+                                                <label for="nama_siswa">Nama Siswa</label>
+                                            </div>
+                                            <div class="col-sm-10">
+                                                <input type="text" name="nama_siswa" id="nama_siswa" class="form-control form-control-sm" value="{{$nama_siswa}}" readonly>
+                                                {!!$errors->first("nama_siswa", "<span class='text-danger'>:message</span>")!!}
+                                            </div>
+                                        </div>
+
                                         <div class="row my-2">
                                             <div class="col-sm-2">
                                                 <label for="nisn">NISN</label>
                                             </div>
                                             <div class="col-sm-10">
-                                                <input type="text" name="nisn" id="nisn" class="form-control form-control-sm" value="{{$siswa->nisn}}">
+                                                <input type="text" name="nisn" id="fieldnisn" class="form-control form-control-sm" value="{{$pembayaran->nisn}}" readonly>
                                                 {!!$errors->first("nisn", "<span class='text-danger'>:message</span>")!!}
                                             </div>
                                         </div>
+
                                         <div class="row my-2">
                                             <div class="col-sm-2">
-                                                <label for="nis">NIS</label>
+                                                <label for="id_spp">Tahun SPP Aktif</label>
                                             </div>
                                             <div class="col-sm-10">
-                                                <input type="text" name="nis" id="nis" class="form-control form-control-sm" value="{{$siswa->nis}}">
-                                                {!!$errors->first("nis", "<span class='text-danger'>:message</span>")!!}
-                                            </div>
-                                        </div>
-                                        <div class="row my-2">
-                                            <div class="col-sm-2">
-                                                <label for="nama">Nama</label>
-                                            </div>
-                                            <div class="col-sm-10">
-                                                <input type="text" name="nama" id="nama" class="form-control form-control-sm" value="{{$siswa->nama}}" readonly>
-                                                {!!$errors->first("nama", "<span class='text-danger'>:message</span>")!!}
-                                            </div>
-                                        </div>
-                                        <div class="row my-2">
-                                            <div class="col-sm-2">
-                                                <label for="email">Email</label>
-                                            </div>
-                                            <div class="col-sm-10">
-                                                <input type="email" name="email" id="email" class="form-control form-control-sm" value="{{$siswa->email}}" readonly>
-                                                {!!$errors->first("email", "<span class='text-danger'>:message</span>")!!}
-                                            </div>
-                                        </div>
-                                        <div class="row my-2">
-                                            <div class="col-sm-2">
-                                                <label for="kelas">Kelas</label>
-                                            </div>
-                                            <div class="col-sm-10">
-                                                <select class="form-control" name="id_kelas">
-                                                    @foreach($kelas_siswa as $kelas)
-                                                    @if($kelas->id == $siswa->id_kelas)
-                                                    <option value="{{ $kelas->id }}" selected>{{ $kelas->nama_kelas }}</option>
-                                                    @else
-                                                    <option value="{{ $kelas->id }}">{{ $kelas->nama_kelas }}</option>
-                                                    @endif
-                                                    @endforeach
-                                                </select>
-                                                {!!$errors->first("id_kelas", "<span class='text-danger'>:message</span>")!!}
-                                            </div>
-                                        </div>
-                                        <div class="row my-2">
-                                            <div class="col-sm-2">
-                                                <label for="alamat">Alamat</label>
-                                            </div>
-                                            <div class="col-sm-10">
-                                                <textarea name="alamat" id="alamat" class="form-control form-control-sm">{{$siswa->alamat}}</textarea>
-                                                {!!$errors->first("nama", "<span class='text-danger'>:message</span>")!!}
-                                            </div>
-                                        </div>
-                                        <div class="row my-2">
-                                            <div class="col-sm-2">
-                                                <label for="no_telp">Nomor Telepon</label>
-                                            </div>
-                                            <div class="col-sm-1">
-                                                <input type="text" class="form-control form-control-sm" value="+62" disabled>
-                                            </div>
-                                            <div class="col-sm-9">
-                                                <input type="text" name="no_telp" id="no_telp" class="form-control form-control-sm" value="{{substr($siswa->no_telp,1)}}">
-                                                {!!$errors->first("no_telp", "<span class='text-danger'>:message</span>")!!}
-                                            </div>
-                                        </div>
-                                        <div class="row my-2">
-                                            <div class="col-sm-2">
-                                                <label for="id_spp">Tahun SPP</label>
-                                            </div>
-                                            <div class="col-sm-10">
-                                                <select class="form-control" name="id_spp">
-                                                    @foreach($spp_siswa as $spp)
-                                                    @if($spp->id == $siswa->id_spp)
-                                                    <option value="{{ $spp->id }}" selected>{{ $spp->tahun }}</option>
-                                                    @else
-                                                    <option value="{{ $spp->id }}">{{ $spp->tahun }}</option>
-                                                    @endif
-                                                    @endforeach
-                                                </select>
+                                                <input type="text" name="id_spp" id="field_id_spp" class="form-control form-control-sm" value="{{$pembayaran->id_spp}}" readonly hidden>
+                                                <input type="text" name="tahun_spp" id="field_tahun_spp" class="form-control form-control-sm" value="{{$tahun_spp}}" readonly>
                                                 {!!$errors->first("id_spp", "<span class='text-danger'>:message</span>")!!}
+                                            </div>
+                                        </div>
+
+                                        <div class="row my-2">
+                                            <div class="col-sm-2">
+                                                <label for="bulan_dibayar">Bulan Dibayar</label>
+                                            </div>
+                                            <div class="col-sm-10">
+                                                <select class="form-control" name="bulan_dibayar" id="bulan_dibayar">
+
+                                                    <option selected value="{{$pembayaran->bulan_dibayar}}">{{$pembayaran->bulan_dibayar}}</option>
+                                                    <option value="Januari">Januari</option>
+                                                    <option value="Februari">Februari</option>
+                                                    <option value="Maret">Maret</option>
+                                                    <option value="April">April</option>
+                                                    <option value="Mei">Mei</option>
+                                                    <option value="Juni">Juni</option>
+                                                    <option value="Juli">Juli</option>
+                                                    <option value="Agustus">Agustus</option>
+                                                    <option value="September">September</option>
+                                                    <option value="Oktober">Oktober</option>
+                                                    <option value="November">November</option>
+                                                    <option value="Desember">Desember</option>
+
+                                                </select>
+                                                {!!$errors->first("bulan_dibayar", "<span class='text-danger'>:message</span>")!!}
+                                            </div>
+                                        </div>
+
+                                        <div class="row my-2">
+                                            <div class="col-sm-2">
+                                                <label for="tgl_bayar">Tanggal Dibayar</label>
+                                            </div>
+                                            <div class="col-sm-4">
+                                                <input type="date" id="tanggal_bayar" name="tanggal_bayar" class="form-control form-control-sm" value="{{$pembayaran->tanggal_bayar}}">
+                                                {!!$errors->first("tanggal_bayar", "<span class='text-danger'>:message</span>")!!}
+                                            </div>
+                                        </div>
+
+                                        <div class="row my-2">
+                                            <div class="col-sm-2">
+                                                <label for="jumlah_bayar">Nominal</label>
+                                            </div>
+                                            <div class="col-sm-10">
+                                                <input type="number" class="form-control form-control-sm" id="jumlah_bayar" name="jumlah_bayar" value="{{$pembayaran->jumlah_bayar}}">
+                                                {!!$errors->first("jumlah_bayar", "<span class='text-danger'>:message</span>")!!}
                                             </div>
                                         </div>
 
@@ -150,7 +146,7 @@
                             </div>
 
                         </div>
-                        
+
 
                     </div>
 

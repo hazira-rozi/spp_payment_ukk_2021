@@ -21,7 +21,7 @@ class CreateUsersTable extends Migration
             $table->string('password');
             $table->string('role'); //ditambahkan ke default migrasi user
             $table->string('default_pass')->nullable();
-            $table->string('status')->nullable();;
+            // $table->string('status')->nullable();;
             $table->rememberToken();
             $table->timestamps();
         });

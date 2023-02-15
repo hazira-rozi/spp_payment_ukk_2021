@@ -96,10 +96,10 @@
                                             <div class="col-sm-2">
                                                 <label for="no_telp">Nomor Telepon</label>
                                             </div>
-                                            <div class="col-sm-1">
+                                            <div class="col-sm-2">
                                                 <input type="text" class="form-control form-control-sm" value="+62" disabled>
                                             </div>
-                                            <div class="col-sm-9">
+                                            <div class="col-sm-8">
                                                 <input type="text" name="no_telp" id="no_telp" class="form-control form-control-sm" placeholder="Nomor Telepon">
                                                 {!!$errors->first("no_telp", "<span class='text-danger'>:message</span>")!!}
                                             </div>

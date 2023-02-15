@@ -4,7 +4,7 @@
     <!-- Sidebar - Brand -->
     <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{route('home')}}">
         <div class="sidebar-brand-icon rotate-n-15">
-            <i class="fas fa-laugh-wink"></i>
+            <i class="fas fa-money-bill"></i>
         </div>
         <div class="sidebar-brand-text mx-3">SB Admin <sup>2</sup></div>
     </a>
@@ -95,6 +95,7 @@
                 <h6 class="collapse-header">Data Pembayaran:</h6>
                 <a class="collapse-item" href="{{route('pembayaran.create')}}">Tambah Data</a>
                 <a class="collapse-item" href="{{route('pembayaran.index')}}">Lihat Data</a>
+                <a class="collapse-item" href="{{url('pembayaran/studentPaymentHistory')}}">Riwayat Pembayaran</a>
             </div>
         </div>
     </li>

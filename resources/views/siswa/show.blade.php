@@ -32,7 +32,7 @@
                                 
                             </div> -->
                             <!-- <h6 class="inline">Data Kelas</h6> -->
-                            <div class="btn btn-sm btn-primary float-right inline" href="{{ route('kelas.create') }}">Add Data <i class="fa fa-plus"></i></div>
+                            <div class="btn btn-sm btn-primary float-left inline" href="{{ route('siswa.index') }}"><i class="fa fa-plus"> Back</i></div>
                         </div>
                         <!-- Card Body -->
                         <div class="card-body">

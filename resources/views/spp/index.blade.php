@@ -32,7 +32,7 @@
                                 
                             </div> -->
                             <!-- <h6 class="inline">Data Kelas</h6> -->
-                            <a class="btn btn-sm btn-primary float-right inline" href="{{ route('spp.create') }}">Add Data <i class="fa fa-plus"></i></a>
+                            <a class="btn btn-sm btn-primary inline" href="{{ route('spp.create') }}"><i class="fa fa-arrow-left"></i></a>
                         </div>
                         <!-- Card Body -->
                         <div class="card-body">

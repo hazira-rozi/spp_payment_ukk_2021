@@ -1,3 +1,5 @@
+
+
 @extends('layouts.app')
 
 @section('content')
@@ -32,7 +34,7 @@
                                 
                             </div> -->
                             <!-- <h6 class="inline">Data Kelas</h6> -->
-                            <div class="btn btn-sm btn-primary float-right inline" href="{{ route('kelas.create') }}">Add Data <i class="fa fa-plus"></i></div>
+                            <div class="btn btn-sm btn-primary inline" href="{{ route('pembayaran.index') }}">Back <i class="fa fa-arrow-left"></i></div>
                         </div>
                         <!-- Card Body -->
                         <div class="card-body">
@@ -40,36 +42,42 @@
                                 <tbody>
                                     <tr>
                                         <th scope="row">NISN</th>
-                                        <td>{{ $siswa->nisn }}</td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">NIS </th>
-                                        <td>{{ $siswa->nis }}</td>
+                                        <td>{{ $pembayaran->nisn }}</td>
                                     </tr>
                                     <tr>
                                         <th scope="row">Nama Siswa</th>
-                                        <td>{{ $siswa->nama }}</td>
+                                        <td>{{ $nama_siswa }}</td>
                                     </tr>
                                     <tr>
-                                        <th scope="row">Email </th>
-                                        <td>{{ $siswa->email }}</td>
+                                        <th scope="row">Kelas</th>
+                                        <td>{{ $nama_kelas }}</td>
                                     </tr>
                                     <tr>
-                                        <th scope="row">Kelas </th>
-                                        <td>{{\App\Models\Kelas::findOrFail($siswa->id_kelas)->nama_kelas;}}</td>
+                                        <th scope="row">ID SPP</th>
+                                        <td>{{ $pembayaran->id_spp }}</td>
                                     </tr>
                                     <tr>
-                                        <th scope="row">Alamat </th>
-                                        <td>{{ $siswa->alamat }}</td>
+                                        <th scope="row">Tahun SPP Aktif</th>
+                                        <td>{{ $tahun_spp }}</td>
                                     </tr>
                                     <tr>
-                                        <th scope="row">No Telepon </th>
-                                        <td>{{ $siswa->no_telp }}</td>
+                                        <th scope="row">Tanggal Bayar</th>
+                                        <td>{{ $pembayaran->tanggal_bayar }}</td>
+                                    </tr>
+                                    
+                                    <tr>
+                                        <th scope="row">Bulan dibayar</th>
+                                        <td>{{ $pembayaran->bulan_dibayar }}</td>
                                     </tr>
                                     <tr>
-                                        <th scope="row">SPP Aktif </th>
-                                        <td>{{\App\Models\SPP::findOrFail($siswa->id_spp)->tahun;}}</td>
+                                        <th scope="row">Tahun dibayar </th>
+                                        <td>{{ $pembayaran->tahun_dibayar}}</td>
                                     </tr>
+                                    <tr>
+                                        <th scope="row">Jumlah Pembayaran </th>
+                                        <td>{{ $pembayaran->jumlah_bayar }}</td>
+                                    </tr>
+                                    
                                 </tbody>
                             </table>
                         </div>

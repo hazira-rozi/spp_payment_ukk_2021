@@ -20,7 +20,7 @@ class StudentMiddleware
             /* 
             silahkan modifikasi pada bagian ini apa yang ingin kamu lakukan jika rolenya tidak sesuai
             */
-            return redirect()->to('logout');
+            return redirect()->to('/');
         }
         return $next($request);
     }
