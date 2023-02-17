@@ -20,24 +20,24 @@ class PembayaranController extends Controller
 
     public function __construct()
     {
-        $this->middleware('auth');
+        return ($this->middleware('admin')) || $this->middleware('staff');
     }
 
     public function index()
-    {   
-        
+    {
+
         $data_pembayaran = Pembayaran::latest()->paginate('10');
         $data_siswa = Student::all();
         $data_spp = SPP::all();
         // $petugas_id = $data_petugas->id;
         return view('pembayaran.index', [
-                
+
             "data_pembayaran" => $data_pembayaran,
-            "data_siswa"=>$data_siswa,
-            "data_spp"=>$data_spp,
+            "data_siswa" => $data_siswa,
+            "data_spp" => $data_spp,
             "title" => "Home",
             "sitemap" => 'Pembayaran',
-         
+
         ])->with('i', (request()->input('page', 1) - 1) * 10);
     }
 
@@ -48,7 +48,7 @@ class PembayaranController extends Controller
         $email = $user->email;
         $data_spp = SPP::all();
         $data_siswa = Student::all();
-        $data_petugas = Staff::where('email',$email) ->first();
+        $data_petugas = Staff::where('email', $email)->first();
         $petugas_id = $data_petugas->id;
         $data_kelas = Kelas::all();
 
@@ -58,7 +58,7 @@ class PembayaranController extends Controller
             "data_siswa" => $data_siswa,
             "data_spp"  => $data_spp,
             "data_kelas"  => $data_kelas,
-            "petugas_id"  => $petugas_id,            
+            "petugas_id"  => $petugas_id,
 
         ]);
     }
@@ -99,7 +99,7 @@ class PembayaranController extends Controller
         ];
 
         Pembayaran::create($data_pembayaran);
-        
+
 
         return redirect()->route('pembayaran.index')->with('success', ' Data telah ditambahkan!');
     }
@@ -108,24 +108,24 @@ class PembayaranController extends Controller
     {
         $pembayaran = Pembayaran::find($id);
 
-        $data_petugas = Staff::where('id',$pembayaran->id_petugas) ->first();
-        $data_siswa = Student::where('nisn',$pembayaran->nisn) ->first();
-        $data_spp = SPP::where('id',$pembayaran->id_spp) ->first();
-        $data_kelas = Kelas::where('id',$data_siswa->id_kelas) ->first();
+        $data_petugas = Staff::where('id', $pembayaran->id_petugas)->first();
+        $data_siswa = Student::where('nisn', $pembayaran->nisn)->first();
+        $data_spp = SPP::where('id', $pembayaran->id_spp)->first();
+        $data_kelas = Kelas::where('id', $data_siswa->id_kelas)->first();
 
         $nama_petugas = $data_petugas->nama;
         $nama_siswa = $data_siswa->nama;
         $tahun_spp = $data_spp->tahun;
         $nama_kelas = $data_kelas->nama_kelas;
-        
-        
-        
+
+
+
         return view('pembayaran.show', [
             "pembayaran" => $pembayaran,
             "petugas" => $nama_petugas,
             "nama_siswa" => $nama_siswa,
             "tahun_spp" => $tahun_spp,
-            "nama_kelas" => $nama_kelas, 
+            "nama_kelas" => $nama_kelas,
             "title" => "Lihat Data SPP",
             "sitemap" => "SPP"
         ]);
@@ -134,23 +134,23 @@ class PembayaranController extends Controller
     public function edit($id)
     {
         $pembayaran = Pembayaran::find($id);
-        $data_petugas = Staff::where('id',$pembayaran->id) ->first();
-        $data_siswa = Student::where('nisn',$pembayaran->nisn) ->first();
-        $data_spp = SPP::where('id',$pembayaran->id_spp) ->first();
-        $data_kelas = Kelas::where('id',$data_siswa->id_kelas) ->first();
+        $data_petugas = Staff::where('id', $pembayaran->id)->first();
+        $data_siswa = Student::where('nisn', $pembayaran->nisn)->first();
+        $data_spp = SPP::where('id', $pembayaran->id_spp)->first();
+        $data_kelas = Kelas::where('id', $data_siswa->id_kelas)->first();
 
         $nama_petugas = $data_petugas->nama;
         $nama_siswa = $data_siswa->nama;
         $tahun_spp = $data_spp->tahun;
         $nama_kelas = $data_kelas->nama_kelas;
         //tambah code 
-        
+
         return view('pembayaran.edit', [
             "pembayaran" => $pembayaran,
             "petugas" => $nama_petugas,
             "nama_siswa" => $nama_siswa,
             "tahun_spp" => $tahun_spp,
-            "nama_kelas" => $nama_kelas, 
+            "nama_kelas" => $nama_kelas,
             "title" => "Edit Data SPP",
             "sitemap" => "SPP"
         ]);
@@ -162,14 +162,14 @@ class PembayaranController extends Controller
             'bulan_dibayar'             => 'required',
             'tanggal_bayar'           => 'required',
             'jumlah_bayar'              => 'required',
-            
+
         ];
 
         $messages = [
             'bulan_dibayar.required'    => 'Bulan dibayar tidak boleh kosong',
             'tanggal_bayar.required'  => 'Tanggal pembayaran tidak boleh kosong',
             'jumlah_bayar.required'     => 'Jumlah pembayaran tidak boleh kosong',
-           
+
         ];
 
         $validator = Validator::make($request->all(), $rules, $messages);
@@ -205,14 +205,13 @@ class PembayaranController extends Controller
     public function getSiswa(Request $request)
     {
         $siswa = DB::table('student')
-        ->where('id_kelas', $request->id_kelas )
-        ->get();
+            ->where('id_kelas', $request->id_kelas)
+            ->get();
 
-        
+
         if (count($siswa) > 0) {
             return response()->json($siswa);
         }
-        
     }
 
     public function getNisn($id)
@@ -221,29 +220,22 @@ class PembayaranController extends Controller
         $noisn = Student::find($id);
         $spp = SPP::find($noisn->id_spp);
         $noisn->tahunspp = $spp->tahun;
-        // $nisn = DB::table('student')
-        // ->where('id', $request->id_siswa )
-        // ->get();
 
-        // dd($nisn->nisn);
-        
-        
-            return response()->json($noisn);
-        
-        
+        return response()->json($noisn);
     }
 
-    public function paymentHistory(){
+    public function paymentHistory()
+    {
         // dd("true");
-        
+
         $data_kelas = Kelas::all();
 
         return view('pembayaran.student_history', [
             "title" => "History Pembayaran", "sitemap" => 'Pembayaran',
             "data_pembayaran" => null,
-            
+
             "data_kelas"  => $data_kelas,
-                      
+
 
         ]);
     }
@@ -253,11 +245,8 @@ class PembayaranController extends Controller
         // dd($request->id_siswa);
         $rules = [
             'id_siswa'          => 'required',
-           
-
         ];
 
-        
         $messages = [
             'id_siswa.required'    => 'Pilih data siswa terlebih dahulu',
         ];
@@ -267,16 +256,16 @@ class PembayaranController extends Controller
         if ($validator->fails()) {
             return redirect()->back()->withErrors($validator)->withInput($request->all);
         }
-        
+
 
         $data_kelas = Kelas::all();
         $data_siswa = Student::all();
         $data_pembayaran = DB::table('pembayaran')
-        ->where('nisn', $request->nisn )->paginate('10');   
+            ->where('nisn', $request->nisn)->paginate('10');
         $data_spp = SPP::all();
         $card = DB::table('student')
-        ->where('nisn',$request->nisn)->first();
-        
+            ->where('nisn', $request->nisn)->first();
+
         return view('pembayaran.student_history', [
             "title" => "History Pembayaran", "sitemap" => 'Pembayaran',
             "data_pembayaran" => $data_pembayaran,
@@ -284,12 +273,31 @@ class PembayaranController extends Controller
             "data_siswa"  => $data_siswa,
             "data_spp"  => $data_spp,
             "card_title" => $card,
-                      
+
 
         ])->with('i', (request()->input('page', 1) - 1) * 10);
     }
 
-    
+    public function history()
+    {
+        $user = Auth::user();
+        $email = $user->email;
+        $data_siswa = Student::where('email', $email)->first();
+        $nisn = $data_siswa->nisn;
+        $data_pembayaran = DB::table('pembayaran')
+            ->where('nisn', $nisn)->paginate('10');
+        $data_spp = SPP::all();
+        $card = $data_siswa->nama;
 
+
+        return view('student.history', [
+            "title" => "History Pembayaran", "sitemap" => 'Pembayaran',
+            "data_pembayaran" => $data_pembayaran,
+            "data_siswa"  => $data_siswa,
+            "data_spp"  => $data_spp,
+            "card_title" => $card,
+
+
+        ])->with('i', (request()->input('page', 1) - 1) * 10);
+    }
 }
-

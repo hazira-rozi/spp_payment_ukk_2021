@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 
 class StudentController extends Controller
 {
@@ -202,6 +203,13 @@ class StudentController extends Controller
         ])->with('success', 'Data berhasil dihapus');
     }
 
-
+    public function home()
+        {
+            $user = Auth::user();
+            return view('student.index' ,[
+                "title" => "Beranda", "sitemap" => 'Siswa'],compact('user')
+            );
+        }
+    
    
 }

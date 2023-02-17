@@ -3,7 +3,12 @@
 @section('content')
 
 
+@section('content')
+@if (auth()->user()->role=== "admin")
 @include('admin.sidebar')
+@else
+@include('petugas.sidebar')
+@endif
 
 <!-- Content Wrapper -->
 <div id="content-wrapper" class="d-flex flex-column">
@@ -11,7 +16,11 @@
     <!-- Main Content -->
     <div id="content">
 
+        @if (auth()->user()->role=== "admin")
         @include('admin.top')
+        @else
+        @include('petugas.top')
+        @endif
 
         <!-- Begin Page Content -->
         <div class="container-fluid">
@@ -28,7 +37,7 @@
                     <div class="card border-left-primary shadow h-100 py-2">
                         <div class="card-body">
                             <!-- Nested Row within Card Body -->
-i
+                            i
                             <div class="col-lg-12">
                                 <div class="p-1">
                                     <form action="{{route('pembayaran.update',$pembayaran->id)}}" method="POST" enctype="multipart/form-data">

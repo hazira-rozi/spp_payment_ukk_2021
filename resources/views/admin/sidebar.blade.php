@@ -26,7 +26,7 @@
     <div class="sidebar-heading">
         MENU
     </div>
-
+    
     <!-- Nav Item - Pages Collapse Menu -->
     <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseSPP" aria-expanded="true" aria-controls="collapseTwo">

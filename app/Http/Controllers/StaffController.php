@@ -152,4 +152,12 @@ class StaffController extends Controller
             "sitemap" => "Staff"
         ])->with('success', 'Data berhasil dihapus');
     }
+
+    public function home()
+        {
+            $user = Auth::user();
+            return view('petugas.index' ,[
+                "title" => "Beranda", "sitemap" => 'Petugas'],compact('user')
+            );
+        }
 }

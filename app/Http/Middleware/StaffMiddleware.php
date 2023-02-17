@@ -5,6 +5,8 @@ namespace App\Http\Middleware;
 use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+
+
 class StaffMiddleware
 {
     /**
@@ -16,12 +18,13 @@ class StaffMiddleware
      */
     public function handle(Request $request, Closure $next)
     {
-        if (Auth::user()->role == "staff" || Auth::user()->role == "admin") {
+        if (Auth::user()->role != "staff") {
             /* 
             silahkan modifikasi pada bagian ini apa yang ingin kamu lakukan jika rolenya tidak sesuai
-            */
-            return $next($request);
+            // */
+            // dd(Auth::user()->role);
+            return redirect()->to('/');
         }
-        redirect()->to('/');
+        return $next($request);
     }
 }

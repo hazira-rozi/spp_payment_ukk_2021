@@ -3,7 +3,11 @@
 @section('content')
 
 
+@if (auth()->user()->role=== "admin")
 @include('admin.sidebar')
+@else
+@include('petugas.sidebar')
+@endif
 
 <!-- Content Wrapper -->
 <div id="content-wrapper" class="d-flex flex-column">
@@ -11,7 +15,11 @@
     <!-- Main Content -->
     <div id="content">
 
+        @if (auth()->user()->role=== "admin")
         @include('admin.top')
+        @else
+        @include('petugas.top')
+        @endif
 
         <!-- Begin Page Content -->
         <div class="container-fluid">
@@ -60,7 +68,7 @@
                                                 </select>
 
                                                 <input type="text" name="nisn" id="fieldnisn" class="form-control form-control-sm" placeholder="Pilih Siswa terlebih dahulu" readonly hidden>
-                                                
+
                                                 {!!$errors->first("id_siswa", "<span class='text-danger'>:message</span>")!!}
                                             </div>
                                         </div>
@@ -98,7 +106,7 @@
                     <div class="card border-left-primary shadow h-100 py-2">
                         <!-- Card Header - Dropdown -->
                         <div class="card-header">
-                        {{$card_title->nama}}
+                            {{$card_title->nama}}
                             <!-- <div class="card-header">
                                  
                             </div> -->

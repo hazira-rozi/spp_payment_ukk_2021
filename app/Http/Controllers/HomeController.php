@@ -30,7 +30,7 @@ class HomeController extends Controller
         } else if ($role == "student") {
             return redirect()->to('student');
         } else if ($role == "staff") {
-            return redirect()->to('staff');
+            return redirect()->to('petugas');
         } else {
             return redirect()->to('logout');
         }

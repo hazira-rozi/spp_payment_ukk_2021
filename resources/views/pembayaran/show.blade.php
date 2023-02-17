@@ -1,11 +1,13 @@
-
-
 @extends('layouts.app')
 
 @section('content')
 
 
+@if (auth()->user()->role=== "admin")
 @include('admin.sidebar')
+@else
+@include('petugas.sidebar')
+@endif
 
 <!-- Content Wrapper -->
 <div id="content-wrapper" class="d-flex flex-column">
@@ -13,7 +15,11 @@
     <!-- Main Content -->
     <div id="content">
 
+        @if (auth()->user()->role=== "admin")
         @include('admin.top')
+        @else
+        @include('petugas.top')
+        @endif
 
         <!-- Begin Page Content -->
         <div class="container-fluid">
@@ -64,7 +70,7 @@
                                         <th scope="row">Tanggal Bayar</th>
                                         <td>{{ $pembayaran->tanggal_bayar }}</td>
                                     </tr>
-                                    
+
                                     <tr>
                                         <th scope="row">Bulan dibayar</th>
                                         <td>{{ $pembayaran->bulan_dibayar }}</td>
@@ -77,7 +83,7 @@
                                         <th scope="row">Jumlah Pembayaran </th>
                                         <td>{{ $pembayaran->jumlah_bayar }}</td>
                                     </tr>
-                                    
+
                                 </tbody>
                             </table>
                         </div>
