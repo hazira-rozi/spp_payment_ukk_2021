@@ -95,9 +95,17 @@
                 <h6 class="collapse-header">Data Pembayaran:</h6>
                 <a class="collapse-item" href="{{route('pembayaran.create')}}">Tambah Data</a>
                 <a class="collapse-item" href="{{route('pembayaran.index')}}">Lihat Data</a>
-                <a class="collapse-item" href="{{url('pembayaran/studentPaymentHistory')}}">Riwayat Pembayaran</a>
+                
             </div>
         </div>
+    </li>
+
+    <li class="nav-item">
+        <a class="nav-link collapsed" href="{{url('pembayaran/report')}}"  aria-expanded="false" aria-controls="collapseTwo">
+            <i class="fas fa-fw fa fa-book"></i>
+            <span>Laporan</span>
+        </a>
+        
     </li>
 
     <li class="nav-item">

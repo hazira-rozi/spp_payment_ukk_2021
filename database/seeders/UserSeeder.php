@@ -15,6 +15,11 @@ class UserSeeder extends Seeder
      */
     public function run()
     {
+        DB::table('staff')->insert([
+            'nama_petugas' => 'Staff',
+            'email' => 'staff@gmail.com',
+            'created_at' => \Carbon\Carbon::now()
+        ]);
         DB::table('users')->insert([
             'name' => 'Admin',
             'email' => 'admin@gmail.com',
@@ -27,6 +32,22 @@ class UserSeeder extends Seeder
         DB::table('staff')->insert([
             'nama_petugas' => 'Admin',
             'email' => 'admin@gmail.com',
+            'created_at' => \Carbon\Carbon::now()
+        ]);
+        DB::table('staff')->insert([
+            'nama_petugas' => 'Staff',
+            'email' => 'staff@gmail.com',
+            'created_at' => \Carbon\Carbon::now()
+        ]);
+
+        DB::table('student')->insert([
+            'nisn' => 12312312,
+            'nis' => 1231231,
+            'nama' =>'Student',
+            'email' => 'student@gmail.com',
+            'alamat' => 'Tanjung Alai',
+            'no_telp' => '081234567892',
+            'id_spp' => 1,
             'created_at' => \Carbon\Carbon::now()
         ]);
         DB::table('users')->insert([

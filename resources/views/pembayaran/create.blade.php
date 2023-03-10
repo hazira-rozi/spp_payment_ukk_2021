@@ -11,13 +11,8 @@
 
     <!-- Main Content -->
     <div id="content">
-
-        
-        @if (auth()->user()->role=== "admin")
+    
         @include('admin.top')
-        @else
-        @include('petugas.top')
-        @endif
 
         <!-- Begin Page Content -->
         <div class="container-fluid">
@@ -51,9 +46,9 @@
                                                     @endforeach
                                                 </select>
                                                 {!!$errors->first("id_kelas", "<span class='text-danger'>:message</span>")!!}
-
+                                                
                                                 <input type="text" name="id_petugas" id="id_petugas" class="form-control form-control-sm" value="{{$petugas_id}}" hidden>
-
+                                                     
                                             </div>
 
                                         </div>
@@ -125,7 +120,7 @@
                                                 {!!$errors->first("tanggal_bayar", "<span class='text-danger'>:message</span>")!!}
                                             </div>
                                         </div>
-
+                                        
                                         <div class="row my-2">
                                             <div class="col-sm-2">
                                                 <label for="jumlah_bayar">Nominal</label>
@@ -178,51 +173,51 @@
 <!-- End of Content Wrapper -->
 
 <script type="text/javascript">
-    $('#kelas').change(function() {
-        var kelas_id = $(this).val();
-        if (kelas_id) {
-            $.ajax({
-                type: "GET",
-                url: "getsiswa/" + kelas_id + "",
-                success: function(res) {
-                    console.log(res);
-                    if (res) {
-                        $("#siswa").empty();
-                        $("#siswa").append('<option>Select</option>');
-                        $.each(res, function(key) {
-                            $("#siswa").append('<option value="' + res[key].id + '">' + res[key].nama + '</option>');
-                        });
+    $('#kelas').change(function () {
+    var kelas_id = $(this).val();
+    if (kelas_id) {
+        $.ajax({
+            type: "GET",
+            url: "getsiswa/" + kelas_id + "",
+            success: function (res) {
+                console.log(res);
+                if (res) {
+                    $("#siswa").empty();
+                    $("#siswa").append('<option>Select</option>');
+                    $.each(res, function (key) {
+                        $("#siswa").append('<option value="' + res[key].id + '">' + res[key].nama + '</option>');
+                    });
 
-                    } else {
-                        $("#siswa").empty();
-                    }
+                } else {
+                    $("#siswa").empty();
                 }
-            });
-        } else {
-            $("#siswa").empty();
-        }
-    });
+            }
+        });
+    } else {
+        $("#siswa").empty();
+    }
+});
 
-    $('#siswa').change(function() {
-        var siswa_id = $(this).val();
-        if (siswa_id) {
-            $.ajax({
-                type: "GET",
-                url: "getnisn/" + siswa_id + "",
-                success: function(res) {
-                    // console.log(res, 'true');
-                    $("#fieldnisn").val(res.nisn);
-                    $("#field_tahun_spp").val(res.tahunspp);
-                    $("#field_id_spp").val(res.id_spp);
-                    console.log(res.nisn, res.tahunspp);
-                }
-            });
-        } else {
-            $("#fields").empty();
-            $("#spp").empty();
-        }
+$('#siswa').change(function () {
+    var siswa_id = $(this).val();
+    if (siswa_id) {
+        $.ajax({
+            type: "GET",
+            url: "getnisn/" + siswa_id + "",
+            success: function (res) {
+                // console.log(res, 'true');
+                $("#fieldnisn").val(res.nisn);
+                $("#field_tahun_spp").val(res.tahunspp);
+                $("#field_id_spp").val(res.id_spp);
+                console.log(res.nisn, res.tahunspp);
+            }
+        });
+    } else {
+        $("#fields").empty();
+        $("#spp").empty();
+    }
 
-    });
+});
 </script>
 
 

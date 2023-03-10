@@ -6,7 +6,7 @@
     <i class="fa fa-bars"></i>
 </button>
 
-<h3>SMKN 1 SINGKARAK | Pembayaran SPP</h2>
+<h3>SMKN 1 SINGKARAK | Pembayaran SPP | {{auth()->user()->role}}</h2>
 
 <!-- Topbar Navbar -->
 <ul class="navbar-nav ml-auto">

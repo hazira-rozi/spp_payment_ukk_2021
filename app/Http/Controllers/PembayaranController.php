@@ -20,7 +20,7 @@ class PembayaranController extends Controller
 
     public function __construct()
     {
-        return ($this->middleware('admin')) || $this->middleware('staff');
+        $this->middleware('auth');
     }
 
     public function index()
@@ -35,7 +35,7 @@ class PembayaranController extends Controller
             "data_pembayaran" => $data_pembayaran,
             "data_siswa" => $data_siswa,
             "data_spp" => $data_spp,
-            "title" => "Home",
+            "title" => "Data Pembayaran",
             "sitemap" => 'Pembayaran',
 
         ])->with('i', (request()->input('page', 1) - 1) * 10);
@@ -53,7 +53,7 @@ class PembayaranController extends Controller
         $data_kelas = Kelas::all();
 
         return view('pembayaran.create', [
-            "title" => "Tambah Data Siswa", "sitemap" => 'Siswa',
+            "title" => "Tambah Data Pembayaran", "sitemap" => 'Pembayaran',
             //add 
             "data_siswa" => $data_siswa,
             "data_spp"  => $data_spp,
@@ -296,6 +296,58 @@ class PembayaranController extends Controller
             "data_siswa"  => $data_siswa,
             "data_spp"  => $data_spp,
             "card_title" => $card,
+
+
+        ])->with('i', (request()->input('page', 1) - 1) * 10);
+    }
+
+    public function report(){
+        $data_spp = SPP::all();
+        // $data_kelas = Kelas::all();
+        
+        return view('pembayaran.report', [
+            "title" => "Laporan Tahunan", "sitemap" => 'Pembayaran',
+            //add 
+            "data_spp"  => $data_spp,
+            "data_pembayaran" => null,
+            // "data_kelas" => $data_kelas,
+           
+        ]);
+    }
+
+    public function show_report(Request $request){
+        // dd($request->id_spp);
+        $rules = [
+            'id_spp'          => 'required',
+        ];
+
+        $messages = [
+            'id_spp.required'    => 'Tahun SPP tidak boleh kosong',
+        ];
+
+        $validator = Validator::make($request->all(), $rules, $messages);
+
+        if ($validator->fails()) {
+            return redirect()->back()->withErrors($validator)->withInput($request->all);
+        }
+
+
+        $data_kelas = Kelas::all();
+        $data_siswa = Student::all();
+        $data_pembayaran = DB::table('pembayaran')
+            ->where('id_spp', $request->id_spp)
+            ->paginate('10');
+        $data_spp = SPP::all();
+        $tahun = $data_pembayaran->tahun_dibayar;
+        
+
+        return view('pembayaran.show_report', [
+            "title" => "Laporan Pembayaran", "sitemap" => 'Pembayaran',
+            "data_pembayaran" => $data_pembayaran,
+            "data_kelas"  => $data_kelas,
+            "data_siswa"  => $data_siswa,
+            "data_spp"  => $data_spp,
+            "tahun_laporan" => $tahun,
 
 
         ])->with('i', (request()->input('page', 1) - 1) * 10);

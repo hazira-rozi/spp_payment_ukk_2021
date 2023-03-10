@@ -9,7 +9,7 @@ use App\Http\Controllers\PembayaranController;
 use App\Http\Controllers\StaffController;
 use App\Http\Controllers\SPPController;
 use App\Http\Controllers\StudentController;
-
+use GuzzleHttp\Middleware;
 
 /*
 |--------------------------------------------------------------------------
@@ -33,7 +33,6 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('logout', [AuthController::class, 'logout'])->name('logout');
 
     
-
     Route::middleware(['admin'])->group(function () {
         Route::get('admin', [AdminController::class, 'index']);
     
@@ -56,6 +55,9 @@ Route::group(['middleware' => 'auth'], function () {
         /*Route kelas*/
         Route::resource('kelas', KelasController::class);
         /*Akhir Route staff*/
+
+        Route::get('pembayaran/report', [PembayaranController::class, 'report'])->name('Report');
+        Route::put('pembayaran/show_report', [PembayaranController::class, 'show_report'])->name('Report');
     });
     
     Route::middleware(['staff'])->group(function () {
@@ -68,11 +70,12 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('pembayaran/history', [PembayaranController::class, 'history'])->name('history');
     });
 
-    Route::group(['middleware' => 'admin','staff'],function(){
+    Route::middleware(['role'])->group(function(){
         Route::get('pembayaran/studentPaymentHistory', [PembayaranController::class, 'paymentHistory'])->name('paymentHistory');
         Route::put('pembayaran/getPembayaran', [PembayaranController::class, 'getPembayaran'])->name('getPembayaran');
         Route::get('pembayaran/getsiswa/{id_kelas}', [PembayaranController::class, 'getSiswa'])->name('getSiswa');
         Route::get('pembayaran/getnisn/{id}', [PembayaranController::class, 'getNisn'])->name('getNisn');
         Route::resource('pembayaran', PembayaranController::class);
     });
+    
 });
