@@ -338,10 +338,10 @@ class PembayaranController extends Controller
             ->where('id_spp', $request->id_spp)
             ->paginate('10');
         $data_spp = SPP::all();
-        $tahun = DB::table('pembayaran')
+        $tahun_lap = DB::table('pembayaran')
             ->where('id_spp', $request->id_spp)->first();
         
-
+        $tahun = $tahun_lap->tahun;
         return view('pembayaran.show_report', [
             "title" => "Laporan Pembayaran", "sitemap" => 'Pembayaran',
             "data_pembayaran" => $data_pembayaran,
