@@ -341,7 +341,7 @@ class PembayaranController extends Controller
         $tahun_lap = DB::table('pembayaran')
             ->where('id_spp', $request->id_spp)->first();
         
-        $tahun = $tahun_lap->tahun;
+        $tahun = $tahun_lap->tahun_spp;
         return view('pembayaran.show_report', [
             "title" => "Laporan Pembayaran", "sitemap" => 'Pembayaran',
             "data_pembayaran" => $data_pembayaran,
